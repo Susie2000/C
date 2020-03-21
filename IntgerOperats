@@ -1,0 +1,44 @@
+/*输入一个正整数，统计并输出其位数，求各位数之和，从高位开始逐位分割，并判断其是否为素数*/
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+	int x,num,i=10,j,num1,num2,count=0,a1,a2,a3,a4,fac=0,flag=0,r,p=0;//x为输入的数
+	printf("请输入一个正整数:");
+	scanf("%d",&x);
+	num1=x;//保留输入的数以便后面使用 
+	do
+	{
+		count++;
+		j=x%i;
+		i=i*10;
+	} while(j!=x);//计算其位数 
+	printf("其位数为:%d\n",count);//输出位数
+	do//计算各位数之和 
+	{
+		a1=x%10;//取出最低位
+		fac=fac+a1;//fac即各位数之和 
+		x=x/10;
+	}while(x!=0);
+	printf("其各位数之和为:%d\n",fac);//输出各位数之和
+	count=count-1;//开始第2题 
+	a2=num1/pow(10,count);
+	printf("%d ",a2);//输出最高位 
+	do
+	{
+		count=count-1;
+		a3=num1/pow(10,count);
+		a4=a3%10;
+		printf("%d ",a4);
+	} while(count>0);//正序间隔输出 
+	for(r=2;r<num1;r++)//判断此数是否为素数 
+	{
+		if(num1%r==0)
+			break;
+	}
+	if(r==num1) 
+		printf("\n%d是素数",num1);
+	if(r!=num1)
+		printf("\n%d不是素数",num1);
+	
+}
